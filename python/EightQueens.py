@@ -14,31 +14,27 @@ For example: if strArr is ["(2,1)", "(4,2)", "(6,3)", "(8,4)", "(3,5)", "(1,6)",
 
 '''
 
-#still working on this. For instance, I have to figure out how to calculate if the pieces 
-#are diagonal from each other. Debugging as I go along. 
+#can't figure out what I'm still getting tabs and indentation error on line 34
 
 def EightQueens(strArr): 
 
-    # code goes here 
-    # width = 8
-    # height = 8
-    array = []
-    for i in range(0, 8):
-      num = strArr[i][1] 
-      array.append(num)
-    	for j in range(0, len(array)):
-    		if num == array[j]:
-    			return True
-  			else:
-  				return False
-      # print(array)
-
-
-        # if num == strArr[i][j]:
-        #     return strArr[i]
-        # else: 
-        # 	return True
-        
+ 
+  array = []
+  for i in strArr:
+    array.append([int(i[1]), int(i[3])])
+  for j in range(0, len(array) - 1):
+  	for k in range(j + 1, len(array)):
+  		x1 = array[j][0]
+  		x2 = array[k][0]
+  		y1 = array[j][1]
+  		y2 = array[k][1]
+  		if x1 == x2 or y1 == y2 or x1 - x2 == y1 - y2:
+  			return "(" + str(x1) + "," + str(y1) + ")"
+	
+	return "true"
+		
+			
+ 
 
     
 if __name__ == "__main__":
