@@ -18,62 +18,76 @@ of size 2x2, so your program should return the area which is 4. You can assume t
 input will not be empty. 
 '''
 
-#still working on debugging this, since it doesn't work for all cases
 
-import math
+def areaOfSquare(arr): 
+	maxSide = 0
 
-def MaximalSquare(strArr):
-
-	maxCount = 0
-	count = 0
-	square = False
+	for i in range(0, len(arr)):
+		for j in range(0, len(arr[0])):
+			if arr[i][j] == 1:
+				side = lengthOfSide(arr, i, j)
+				if side > maxSide:
+					maxSide = side
 	
+	return maxSide*maxSide
 
-	for i in range(0, len(strArr)):
-		for j in range(0, len(strArr[0])):
-			if strArr[i][j] == '1' :
-				square = True
-				maxCount = 1
-				if checkNeighbors(strArr, i, j):
-					count = math.pow(i + 1, 2)
-					if count > maxCount:
-						maxCount = count
 
-# def checkNeighbors(strArr, i, j):
-# 	increment = False
-# 	if strArr[i + 1][j] == '1' and strArr[i][j +1] == '1' and strArr[i + 1][j + 1] == '1' :
-# 		increment = True
-# 	return increment
+def lengthOfSide(arr, i, j):
+	maxLength = len(arr) - i
+	maxWidth = len(arr[0]) - j
 
-def checkNeighbors(strArr, i, j):
+	maxSide = 1
 
-	for i in range(i, len(strArr) - i):
-		for j in range(j, len(strArr[0]) - j):
-			for n in range()
-			if strArr[]
-			if strArr[i][j] != '1':
+	if maxLength <= maxWidth:
+		maxSide = maxLength
+	else:
+		maxSide = maxWidth
+
+	side = 1
+
+	for sideToTest in range(1, maxSide + 1):
+
+		if(isItAllOnes(arr,i,j,sideToTest)):
+			side = sideToTest
+		else:
+			side = sideToTest - 1
+			return side
+	# print("side = " + str(side))
+	return side
+
+
+def isItAllOnes(arr, i,j,s):
+	ans = True
+	for m in range(i, i + s):
+		for n in range(j, j + s):
+			# print("m, n = " + str((m,n)))
+			if arr[m][n] == 0:
+				# print("m, n after found 0 = " + str((m,n)))
+				ans = False
 				break
-			return True
 
+	return ans
 
-
-
-
-
-
-
-			# if strArr[i][j] == '1' and strArr[i][j + 1] == '1' \
-			# and strArr[i + 1][j] == '1' and strArr[i + 1][j + 1] == '1' :
-
-			# 	count = 4
-			# 	while i + n <= len(strArr) and j + n <= len(strArr[0]):
-			# 		if strArr[i][i + n] == '1' and strArr[i + n][i] == '1' :
-			# 			count = math.pow(n + 1, 2)
-			# 		n += n
-
-			# if count == 0 and strArr[i][j] == '1' :
-			# 	return 1
-	
 
 if __name__ == "__main__":
-	print(MaximalSquare(["10100", "10111", "11111", "10010"]))
+	arr = [[1,0,1,0,0], [1,0,1,1,1], [1,1,1,1,1], [1,0,0,1,0]]
+	arr = [[0,0,0,0,1,0], [0,1,1,1,1,0], [0,1,1,1,1,1], [0,1,1,1,1,1], [0,1,1,1,1,0], [0,0,0,0,0,0]]
+
+	# # Testing isItAllOnes
+	# print(isItAllOnes(arr, 0,0,2)) # --> False
+	# print(isItAllOnes(arr, 2,0,2)) # --> False
+	# # print(isItAllOnes(arr, 2,0,3)) # --> Error
+	# print(isItAllOnes(arr, 1,2,2)) # --> True
+	# print(isItAllOnes(arr, 2,4,2)) # --> Error
+	
+
+	# Testing lengthOfSide
+	# print(lengthOfSide(arr, 1,2)) # 2
+	# print(lengthOfSide(arr, 0,0)) # 1
+	# print(lengthOfSide(arr, 0,1)) # 0
+	# print(lengthOfSide(arr, 3,4)) # 0
+	# print(lengthOfSide(arr, 3,3)) # 1
+
+
+	print(areaOfSquare(arr))
+
