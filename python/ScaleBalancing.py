@@ -20,22 +20,26 @@ the scale to balance it. If it is not possible to balance the scale then your
 program should return the string not possible. 
 '''
 
-#to-do: make code more readable, have the functions call each other
 
 def ScaleBalancing(strArr):
-  # smallerWeight = 0;
-  # largerWeight = 0
 
+  #smaller weight is returned at index 0, larger weight at index 1
   smallerWeight = findWeights(strArr)[0]
   largerWeight = findWeights(strArr)[1]
 
-  # if addWeightsToOneSide(strArr):
-  #   print(addWeightsToOneSide(strArr))
+  addedToOneSide = addWeightsToOneSide(strArr, smallerWeight, largerWeight)
+  addedToBothSides = addWeightToBothSides(strArr, smallerWeight, largerWeight)
 
-  numbersAddedToOneSide = addWeightsToOneSide(strArr)
-  print(numbersAddedToOneSide)
+  if addedToOneSide:
+    print("two weights added to one side: " + str(addedToOneSide))
+
+  elif addedToBothSides:
+    print("one weight added to each side: " + str(addedToBothSides))
+
+  else:
+    print("No way to balance")
+
   
-
 def findWeights(strArr):
   
   smallerWeight = 0;
@@ -49,9 +53,13 @@ def findWeights(strArr):
     smallerWeight = strArr[0][1]
     largerWeight = strArr[0][0]
 
-  return [smallerWeight, largerWeight]
+  weights = [smallerWeight, largerWeight]
 
-def addWeightsToOneSide(strArr):
+  return weights
+
+def addWeightsToOneSide(strArr, smallerWeight, largerWeight):
+  smallerWeight = findWeights(strArr)[0]
+  largerWeight = findWeights(strArr)[1]
   
   # print(list(range(0, len(strArr[1]))))
   for i in range(0, len(strArr[1])):
@@ -65,7 +73,8 @@ def addWeightsToOneSide(strArr):
       if strArr[1][j] + strArr[1][k] + smallerWeight == largerWeight:
         return [strArr[1][j], strArr[1][k]]
 
-def addWeightToBothSides(strArr):
+def addWeightToBothSides(strArr, smallerWeight, largerWeight):
+
   for j in range(0, len(strArr[1]) - 1):
 
     for k in range(j + 1, len(strArr[1])):
@@ -73,17 +82,12 @@ def addWeightToBothSides(strArr):
        or smallerWeight + strArr[1][k] == largerWeight + strArr[1][j]:
         return [strArr[1][j], strArr[1][k]]
 
-  return "No way to balance"
-
-
 if __name__ == "__main__":
-  # print(findWeights([[3,4], [1,2,7,7]]))
-  # ScaleBalancing([[7, 4], [1, 2, 7, 7]])
+  strArr = [[5,9], [1,2,6,7]]
+
+  ScaleBalancing(strArr)
 
   # strArr = [[7, 4], [1, 2, 7, 7]]
-  strArr = [[5,9], [1,2,6,7]]
-  smallerWeight = findWeights(strArr)[0]
-  largerWeight = findWeights(strArr)[1]
-  # print(addWeightsToOneSide(strArr))
-  print(addWeightToBothSides(strArr))
+  # strArr = [[5,9], [1,2,6,7]]
+ 
   
