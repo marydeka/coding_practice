@@ -1,6 +1,8 @@
-Leetcode 1290: Easy 
+'''Leetcode 1290: Easy 
 Category: Linked Lists, Base Conversion
+Estimated Time Taken: 15 minutes
 Convert Binary Number in Linked List to Integer
+'''
 
 # Definition for singly-linked list.
 # class ListNode:
