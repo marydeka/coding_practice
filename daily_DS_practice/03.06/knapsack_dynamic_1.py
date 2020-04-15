@@ -1,3 +1,10 @@
+'''
+Iteration 1
+Time: Over 2 hrs
+Problem: Dynamic Programming Knapsack
+'''
+
+
 def solve_knapsack(profits, weights, capacity):
   #base cases
   if capacity <= 0 or len(profits) == 0:

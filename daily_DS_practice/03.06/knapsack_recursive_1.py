@@ -24,8 +24,8 @@ def knapsack_recursive(profits, weights, capacity, index):
 
 
 def main():
-  print(knapsack_recursive([1, 6, 10, 16], [1, 2, 3, 5], 7, 0))
-  print(knapsack_recursive([1, 6, 10, 16], [1, 2, 3, 5], 6, 0))
+  print(knapsack_recursive([1, 6, 10, 16], [1, 2, 3, 5], 7, 0))     #should return 22
+  print(knapsack_recursive([1, 6, 10, 16], [1, 2, 3, 5], 6, 0))     #should return 17
 
 
 main()
